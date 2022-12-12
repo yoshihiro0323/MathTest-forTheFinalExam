@@ -1,4 +1,4 @@
-\documentclass[a3paper,twocolumn,fleqn]{ltjsarticle}
+\documentclass[a4paper,fleqn]{ltjsarticle}
 \usepackage[top=17truemm,bottom=17truemm,left=11truemm,right=11truemm]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{intersections,calc,arrows.meta}
@@ -14,8 +14,19 @@
 \setlength{\columnseprule}{0.4pt}
 \setlength{\columnsep}{2\zw}
 \pagestyle{empty}
+
+\newcommand{\stamp}[2]{%
+  \begin{tikzpicture}[baseline=(A.base),font=\sffamily]
+    \node[draw=#1, rectangle, rounded corners=2pt,
+          text=#1, solid,
+          fill=#1!10!white,
+          line width=.4pt, inner sep=1pt, outer sep=0pt
+          ] (A) {\bfseries\small #2};
+  \end{tikzpicture}%
+}
+\newcommand{\K}[1]{\underline{\stamp{black}{答}\, #1}}
 \begin{document}
-\section{問題}
+
 関数$y=e^x$で表される曲線$C_1$上を動く点P$(t,e^t)$に対し，点Pで曲線$C_1$の上側で接する半径$1$の円$C$を考え，その中心を点O$^\prime$とする．線分PQが円$C$の直径になるような点Qとする．以下の問いに答えよ．
 \begin{enumerate}[(1)]
     \item 点O$^\prime$の座標を$t$を用いて表せ．
@@ -23,12 +34,13 @@
     \item $t$が実数全体を動くときの点Qが描く曲線を曲線$C_2$とする．また，$t=0$での点Qの$x$座標の値を$a$，$\displaystyle t=\frac{\log3}{2}$での点Qの$x$座標の値を$b$とするとき，曲線$C_1$と$x$軸，$x=a$，$x=b$で囲まれた部分の面積を求めよ．
     \item 点Pを$\displaystyle 0\leqq t\leqq \frac{\log3}{2} $の範囲で動かしたとき，円$C$が通過する領域の面積を求めよ．
 \end{enumerate}
-
-\section{解答}
+\twocolumn
 \begin{enumerate}[(1)]
-    \item $y=e^x$のとき，$y'=e^x$より，点Pにおける法線の傾きは$\displaystyle -\frac{1}{e^t}$ ．これは直線PO$^\prime$の傾きでもあるので，$\left| \overrightarrow{\mbox{PO}^\prime} \right| = 2$ と，円$C$は$C_1$の上側で接することより，\\
-    $\displaystyle \overrightarrow{\mbox{PO}^\prime} = \left( -\frac{e^t}{\sqrt{e^{2t}+1}} , \frac{1}{\sqrt{e^{2t}+1}}\right)$．
-    P$(t,e^t)$より，$\displaystyle \mbox{O}^\prime \left( t - \frac{e^t}{\sqrt{e^{2t}+1}} , e^t + \frac{1}{\sqrt{e^{2t}+1}}\right)$\\
+    \item $y=e^x$のとき，$y'=e^x$より，点Pにおける法線の傾きは$\displaystyle -\frac{1}{e^t}$ ．\\
+    これは直線PO$^\prime$の傾きでもあるので，$\mbox{PO}^\prime = 1$ と，円$C$は$C_1$の上側で接することより，\\
+    $\displaystyle \overrightarrow{\mbox{PO}^\prime} = \left( -\frac{e^t}{\sqrt{e^{2t}+1}} , \frac{1}{\sqrt{e^{2t}+1}}\right)$．\\
+    P$(t,e^t)$より，\K{$\displaystyle \mbox{O}^\prime \left( t - \frac{e^t}{\sqrt{e^{2t}+1}} , e^t + \frac{1}{\sqrt{e^{2t}+1}}\right)$}\\
+    \newpage
     \item 
     \begin{align*}
         \frac{dx}{dt} &= 1-\frac{e^t}{{\left( e^{2t}+1 \right)}^\frac{3}{2}} & \frac{dy}{dt} &= e^t - \frac{e^{2t}}{{\left( e^{2t}+1 \right)}^\frac{3}{2}}
@@ -49,16 +61,18 @@
         \int_{0}^{\frac{\log3}{2}} \sqrt{1+e^{2t}} &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{1}{\sin\theta \cos^2\theta} d\theta\\
         &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \left(\frac{\sin\theta}{\cos^2\theta} + \frac{1}{\sin\theta}\right) d\theta\\
         &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} -\frac{\left(\cos\theta\right)^\prime}{\cos^2\theta} d\theta + \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{d\theta}{\sin\theta}\\
-        &= \left[\frac{1}{\cos\theta}\right]^{\frac{\pi}{3}}_{\frac{\pi}{4}} + \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{d\theta}{\sin\theta} = 2 -\sqrt{2} + \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{d\theta}{\sin\theta}\\
+        &= \left[\frac{1}{\cos\theta}\right]^{\frac{\pi}{3}}_{\frac{\pi}{4}} + \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{d\theta}{\sin\theta} \\
+        &= 2 -\sqrt{2} + \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{d\theta}{\sin\theta}\\
         \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{1}{\sin\theta} d\theta  &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{\sin\theta}{1-\cos^2\theta} d\theta\\
         &= \frac{1}{2}\int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \left(\frac{\sin\theta}{1-\cos\theta}+\frac{\sin\theta}{1+\cos\theta}\right) d\theta\\
-        &= \frac{1}{2}\left[\log\left(\frac{1-\cos\theta}{1+\cos\theta}\right)\right]^{\frac{\pi}{3}}_{\frac{\pi}{4}} = -\frac{1}{2}\log\left(9-6\sqrt{2}\right)\\
+        &= \frac{1}{2}\left[\log\left(\frac{1-\cos\theta}{1+\cos\theta}\right)\right]^{\frac{\pi}{3}}_{\frac{\pi}{4}} \\
+        &= -\frac{1}{2}\log\left(9-6\sqrt{2}\right)\\
+        &= -\log\left(\sqrt{6}-\sqrt{3}\right)\\
         \int_{0}^{\frac{\log3}{2}} \frac{e^t}{e^{2t}+1} dt &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} d\theta = \Big[\theta\Big]^{\frac{\pi}{3}}_{\frac{\pi}{4}} = \frac{\pi}{12}\\
     \end{align*}
     以上より，
-    \begin{align*}
-        \ell &= 2 -\sqrt{2} -\frac{1}{2}\log\left(9-6\sqrt{2}\right) - \frac{\pi}{12}
-    \end{align*}
+        $\ell =$ \;\K{$\displaystyle  2 -\sqrt{2} -\log\left(\sqrt{6}-\sqrt{3}\right) - \frac{\pi}{12}$}\\
+    \newpage
     \item (1)の結果より，\\
     Q$\displaystyle \left( t - \frac{2e^t}{\sqrt{e^{2t}+1}} , e^t + \frac{2}{\sqrt{e^{2t}+1}}\right)$．$\displaystyle f(t) = t - \frac{2e^t}{\sqrt{e^{2t}+1}}$とおくと， \\
     \begin{align*}
@@ -69,10 +83,8 @@
         \frac{dx}{dt} &= 1-2\frac{e^t \sqrt{e^{2t}+1} - e^t \frac{e^{2t}}{\sqrt{e^{2t}+1}}}{e^{2t}+1} = 1-\frac{2e^t}{{\left( e^{2t}+1 \right)}^\frac{3}{2}}
     \end{align*}
     よって，
-    \begin{align*}
-        \int_{b}^{a} y dx &= \int_{0}^{\frac{\log3}{2}} \left( e^t + \frac{2}{\sqrt{e^{2t}+1}}\right)\left( 1-\frac{2e^t}{{\left( e^{2t}+1 \right)}^\frac{3}{2}} \right) dt \\
-        &= \int_{0}^{\frac{\log3}{2}} \left(e^t + \frac{2}{\sqrt{e^{2t}+1}} - \frac{2e^{2t}}{{\left( e^{2t}+1 \right)}^\frac{3}{2}} - \frac{4e^t}{\left( e^{2t}+1 \right)^2}\right)dt\\
-    \end{align*}
+    \[\int_{b}^{a} y dx = \int_{0}^{\frac{\log3}{2}} \left( e^t + \frac{2}{\sqrt{e^{2t}+1}}\right)\left( 1-\frac{2e^t}{{\left( e^{2t}+1 \right)}^\frac{3}{2}} \right) dt \]
+    \[= \int_{0}^{\frac{\log3}{2}} \left\{e^t + \frac{2}{\sqrt{e^{2t}+1}} - \frac{2e^{2t}}{{\left( e^{2t}+1 \right)}^\frac{3}{2}} - \frac{4e^t}{\left( e^{2t}+1 \right)^2}\right\} dt \]
     ここで，
     \begin{align*}
         \int_{0}^{\frac{\log3}{2}} e^t &= \Big[e^t \Big]_{0}^{\frac{\log3}{2}} = \sqrt{3} - 1 \\
@@ -81,7 +93,8 @@
     \end{align*}
     (2)と同様に置換すると，
     \begin{align*}
-        \int_{0}^{\frac{\log3}{2}} \frac{2}{\sqrt{e^{2t}+1}} dt &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{2}{\sin\theta} d\theta = \log\left(9-6\sqrt{2}\right)\\
+        \int_{0}^{\frac{\log3}{2}} \frac{2}{\sqrt{e^{2t}+1}} dt &= \int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \frac{2}{\sin\theta} d\theta \\
+        &= 2\log\left(\sqrt{6}-\sqrt{3}\right)\\
         \int_{0}^{\frac{\log3}{2}} \frac{4e^t}{\left( e^{2t}+1 \right)^2} dt &= 4\int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \cos^2\theta d\theta\\
         &= 2\int^{\frac{\pi}{3}}_{\frac{\pi}{4}} \left(1+\cos2\theta\right) d\theta\\
         &= \Big[2\theta + \sin2\theta\Big]^{\frac{\pi}{3}}_{\frac{\pi}{4}}\\
@@ -89,9 +102,10 @@
     \end{align*}
     以上より，求める面積を$S$として，
     \begin{align*}
-        S &= \left(\sqrt{3} - 1\right) +\log\left(9-6\sqrt{2}\right) -\left(\sqrt{2} - 1\right) -\left( \frac{\pi}{6} + \frac{\sqrt{3}}{2} - 1\right)\\
-        &= 1 -\sqrt{2} + \frac{\sqrt{3}}{2} +\log\left(9-6\sqrt{2}\right)- \frac{\pi}{6}
+        S &= \left(\sqrt{3} - 1\right) + 2\log\left(\sqrt{6}-\sqrt{3}\right) -\left(\sqrt{2} - 1\right) -\left( \frac{\pi}{6} + \frac{\sqrt{3}}{2} - 1\right)\\
+        &= 1 -\sqrt{2} + \frac{\sqrt{3}}{2} + 2\log\left(\sqrt{6}-\sqrt{3}\right) - \frac{\pi}{6}
     \end{align*}
+    \newpage
     \item 求める領域は以下の通り．\\
     \begin{tikzpicture}
         \draw[->,>=stealth,semithick](-4,0)--(2,0)node[above]{$x$};%x軸
@@ -119,19 +133,16 @@
     $t=0$のとき，傾きは$-1$で，$\displaystyle t=\frac{\log3}{2}$のとき，傾きは$\displaystyle -\frac{1}{\sqrt{3}}$ である．\\
     以上より，求める面積を$S^\prime$として，
     \begin{align*}
-        S^\prime &= 1-\sqrt{2} + \frac{\sqrt{3}}{2} +\log\left(9-6\sqrt{2}\right)- \frac{\pi}{6} - \frac{1}{2}\left(1+1+\sqrt{2}\right)\sqrt{2} + \frac{1}{2}\left(\sqrt{3}+1+\sqrt{3}\right)\sqrt{3}\\
+        S^\prime &= 1-\sqrt{2} + \frac{\sqrt{3}}{2} +2\log\left(\sqrt{6}-\sqrt{3}\right)- \frac{\pi}{6} - \frac{1}{2}\left(1+1+\sqrt{2}\right)\sqrt{2} + \frac{1}{2}\left(\sqrt{3}+1+\sqrt{3}\right)\sqrt{3}\\
         &- \int_{0}^{\frac{\log3}{2}} e^x dx + \pi\\
-        &= 4 -2\sqrt{2} -\log\left(9-6\sqrt{2}\right) + \frac{5}{6}\pi
+        &= \mbox{\K{$\displaystyle4 -2\sqrt{2} -2\log\left(\sqrt{6}-\sqrt{3}\right) + \frac{5}{6}\pi$}}x
     \end{align*}
-    \fbox{別解}\\
+    \stamp{black}{別解} \\
     (2)の結果より，
     \begin{align*}
-        S^\prime &= 2\left(2 -\sqrt{2} -\frac{1}{2}\log\left(9-6\sqrt{2}\right) - \frac{\pi}{12}\right) + \pi\\
-        &= 4 -2\sqrt{2} -\log\left(9-6\sqrt{2}\right) + \frac{5}{6}\pi
+        S^\prime &= 2\left(2 -\sqrt{2} -\log\left(\sqrt{6}-\sqrt{3}\right) - \frac{\pi}{12}\right) + \pi\\
+        &= \mbox{\K{$\displaystyle4 -2\sqrt{2} -2\log\left(\sqrt{6}-\sqrt{3}\right) + \frac{5}{6}\pi$}}
     \end{align*}
 \end{enumerate}
-\section{感想・考察}
-円の内部や外部を円が接しながら移動する問題を応用した．曲線$C_1$を表す関数を$y=x^2$などの関数での問題にしようとしたが，高校数学範囲で積分できない式が出てきてしまったので，$y=e^x$とし，曲線の長さを求める問題を追加した．\\
-また，点Qの座標を$t$で表したときに複雑にならないよう，曲線$C_1$の下側ではなく上側を円が動くようにした．加えて，$e^t = \tan\theta$の置換ができるように範囲を設定した．\\
-計算結果が綺麗になるように改善すればより良い問題になるだろう．
+
 \end{document}
