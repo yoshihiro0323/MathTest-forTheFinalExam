@@ -16,11 +16,11 @@
 \pagestyle{empty}
 \begin{document}
 \section{問題}
-関数$y=e^x$で表される曲線$C_1$上を動く点P$(t,e^t)$に対し，点Pで曲線$C_1$の上側で接する半径$1$の円$C$を考え，その中心を点O$^\prime$とする．線分PQが円$C$の直径になるような点Qとする．座標以下の問いに答えよ．
+関数$y=e^x$で表される曲線$C_1$上を動く点P$(t,e^t)$に対し，点Pで曲線$C_1$の上側で接する半径$1$の円$C$を考え，その中心を点O$^\prime$とする．線分PQが円$C$の直径になるような点Qとする．以下の問いに答えよ．
 \begin{enumerate}[(1)]
     \item 点O$^\prime$の座標を$t$を用いて表せ．
     \item 点Pを$\displaystyle 0\leqq t\leqq \frac{\log3}{2} $の範囲で動かしたとき，点O$^\prime$が通る軌跡の曲線の長さを求めよ．
-    \item 線分PQが円$C$の直径になるような点Qをおき，$t$が実数全体を動くときの点Qが描く曲線を曲線$C_2$とする．また，$t=0$での点Qの$x$座標の値を$a$，$\displaystyle t=\frac{\log3}{2}$での点Qの$x$座標の値を$b$とするとき，曲線$C_1$と$x$軸，$x=a$，$x=b$で囲まれた部分の面積を求めよ．
+    \item $t$が実数全体を動くときの点Qが描く曲線を曲線$C_2$とする．また，$t=0$での点Qの$x$座標の値を$a$，$\displaystyle t=\frac{\log3}{2}$での点Qの$x$座標の値を$b$とするとき，曲線$C_1$と$x$軸，$x=a$，$x=b$で囲まれた部分の面積を求めよ．
     \item 点Pを$\displaystyle 0\leqq t\leqq \frac{\log3}{2} $の範囲で動かしたとき，円$C$が通過する領域の面積を求めよ．
 \end{enumerate}
 
@@ -39,10 +39,10 @@
         &= \int_{0}^{\frac{\log3}{2}} \left(1 - \frac{e^t}{\left(e^{2t} + 1\right)^\frac{3}{2}}\right)\sqrt{1+e^{2t}} dt\\
         &= \int_{0}^{\frac{\log3}{2}} \left(\sqrt{1+e^{2t}} - \frac{e^t}{e^{2t} + 1}\right) dt
     \end{align*}
-    $e^t = \tan\theta$と置換すると，$\displaystyle 0\leqq t\leqq \frac{\log3}{2} $より，$\displaystyle \frac{\pi}{3} \leqq\theta\leqq\frac{\pi}{4}$
+    $e^t = \tan\theta$と置換すると，$\displaystyle 0\leqq t\leqq \frac{\log3}{2} $より，$\displaystyle \frac{\pi}{4} \leqq\theta\leqq\frac{\pi}{3}$
     \begin{align*}
         e^t &= \frac{d\theta}{dt}\frac{1}{\cos^2\theta}\\
-        \Leftrightarrow dt &= \frac{1}{e^t \cos^2\theta} = \frac{1}{\tan\theta\cos^2\theta}= \frac{1}{\sin\theta\cos\theta}\\
+        \Leftrightarrow dt &= \frac{d\theta}{e^t \cos^2\theta} = \frac{d\theta}{\tan\theta\cos^2\theta}= \frac{d\theta}{\sin\theta\cos\theta}\\
     \end{align*}
     よって，
     \begin{align*}
